@@ -2,6 +2,10 @@ require "application_system_test_case"
 
 class PurchasesTest < ApplicationSystemTestCase
   setup do
+    visit login_path
+    fill_in "Email", with: 'admin@admin.admin', match: :first
+    fill_in "Password", with: 'admin', match: :first
+    click_on 'Belépés'
     @purchase = purchases(:one)
   end
 
@@ -43,5 +47,17 @@ class PurchasesTest < ApplicationSystemTestCase
     end
 
     assert_text "Purchase was successfully destroyed"
+  end
+
+  test "do purchase" do
+    assert_difference('Purchase.count', 1) do
+      visit products_url
+      click_on "Kosárba", match: :first
+    end
+    assert_difference('Purchase.count', -1) do
+      visit cart_url
+      click_on "Rendelés"
+    end
+
   end
 end

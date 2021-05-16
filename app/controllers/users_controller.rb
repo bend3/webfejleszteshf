@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :require_admin, only: %i[index show new edit update destroy create]
+  before_action :require_admin, only: :edit
 
   # GET /users or /users.json
   def index
+    #render plain: "OK" , status: :forbidden
     @users = User.all
   end
 
@@ -76,7 +77,8 @@ class UsersController < ApplicationController
   end
 
   def require_admin
-    current_user&.admin
+    p ""
+    render status: :forbidden, plain: "You do not have access to this page." unless current_user&.admin
   end
   # PATCH/PUT /users/1 or /users/1.json
   def update

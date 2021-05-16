@@ -4,8 +4,5 @@ one:
   user: one
   product: one
   quantity: 1
+  purchased: false
 
-two:
-  user: two
-  product: two
-  quantity: 1

@@ -2,6 +2,10 @@ require "application_system_test_case"
 
 class ProductsTest < ApplicationSystemTestCase
   setup do
+    visit login_path
+    fill_in "Email", with: 'admin@admin.admin', match: :first
+    fill_in "Password", with: 'admin', match: :first
+    click_on 'Belépés'
     @product = products(:one)
   end
 
@@ -18,6 +22,8 @@ class ProductsTest < ApplicationSystemTestCase
     fill_in "Name", with: @product.name
     fill_in "Price", with: @product.price
     fill_in "Status", with: @product.status
+    fill_in "Quantity", with: 2
+    fill_in "Image", with: 'image.png'
     click_on "Create Product"
 
     assert_text "Product was successfully created"

@@ -17,7 +17,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user" do
     assert_difference('User.count') do
-      post users_url, params: { user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name, password: @user.password } }
+      post users_url, params: { user: { email: 'kortefa@korte.fa', first_name: 'Körte', last_name: 'Fa', password: 'kortefa' } }
     end
 
     assert_redirected_to user_url(User.last)
@@ -30,7 +30,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get edit" do
     get edit_user_url(@user)
-    assert_response :success
+    assert_response :forbidden
   end
 
   test "should update user" do
@@ -39,6 +39,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy user" do
+    @user = User.create!(email:'delete@delet.delete')
     assert_difference('User.count', -1) do
       delete user_url(@user)
     end

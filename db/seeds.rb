@@ -9,7 +9,7 @@
   number = (0..5).to_a.sample
   Product.create!(name:Faker::Appliance.equipment, price:(1000..10000).to_a.sample ,
                   description:Faker::Lorem.paragraph , quantity:number,
-                  status: number.zero? ? 1 : 0)
+                  status: number.zero? ? 1 : 0, image: 'image.png')
 end
 
 User.create!(first_name: 'Admin', last_name: 'Admin', email: 'admin@admin.admin' , password: 'admin' , admin: true)

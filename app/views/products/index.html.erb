@@ -19,7 +19,7 @@
         <td><%=link_to product.name, product %></td>
         <td><%= product.price %></td>
         <td><%= product.quantity %></td>
-        <td><%= Product.statuses[product.status] == Product.statuses[:in_stock] ? 'Raktáron' : 'Nincs Raktáron' %>
+        <td><%= product.status == 'in_stock' ? 'Raktáron' : 'Nincs Raktáron' %>
         <%if !current_user.nil? %>
             <td><%= button_to 'Kosárba', add_to_cart_path(product.id) ,method: :post %></td>
           <%end %>

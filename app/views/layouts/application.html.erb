@@ -28,6 +28,9 @@
           <%= form.text_field :search , placeholder: 'Keresés', size: '3' %></br>
           <%= form.submit 'Keresés'%>
         <% end %>
+        <%if !current_user.nil? %>
+            <div><%="#{current_user&.first_name} bejelentkezve" %></div>
+          <%end %>
       </div>
       <div class="col-10">
         <%if !current_user.nil? %>
