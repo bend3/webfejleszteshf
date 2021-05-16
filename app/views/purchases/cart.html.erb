@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table>
+    <%current_user.purchases.each do |purchase| %>
+        <tr>
+          <td><%=purchase.product.name %></td>
+          <td><%=purchase.product.price %></td>
+          <td><%=purchase.quantity %>
+          <td><%=button_to '+', change_quantity_path(purchase), params:{amount: '1'} , method: :post %></td>
+          <td><%=button_to '-', change_quantity_path(purchase), params:{amount: '-1'} , method: :post %></td>
+        </tr>
+      <% end %>
+        <tr>
+          <td colspan="2">Összesen</td>
+          <td colspan="3"><%=current_user.purchases.sum do |purchase|%>
+              <% purchase.product.price*purchase.quantity%>
+            <% end %>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+    <div class="col-6">
+      <%=button_to 'Rendelés', finish_order_path, method: :post %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <%= form_with url: sign_in_path, model: User.new do |form| %>
+        <%= form.label :email %>
+        <%= form.text_field :email %></br>
+        <%= form.label :password %>
+        <%= form.text_field :password %></br>
+        <%= form.submit 'Bejelenkezés'%>
+      <% end %>
+
+    </div>
+    <div class="col-6">
+      <%= form_with url: sign_up_path, model: User.new do |form| %>
+        <%= form.text_field :last_name , placeholder: 'Vezetéknév'%>
+        <%= form.text_field :first_name , placeholder: 'Keresztnév'%></br>
+        <%= form.text_field :email , placeholder: 'email'%></br>
+        <%= form.text_field :password ,placeholder: 'jelszó'%></br>
+        <%= form.text_field :confirmation_password ,placeholder: 'jelszó megerősítése'%></br>
+        <%= form.submit 'Regisztráció'%>
+      <% end %>
+    </div>
+  </div>
+</div>

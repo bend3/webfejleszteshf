@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div><%= @product.name %></div>
+  <div class="row">
+    <div class="col">
+      <strong>Description:</strong>
+      <%= @product.description %>
+    </div>
+    <div class="col">
+      <%= image_tag "image.png" , :size => 20*20  %>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col">
+        <div>
+          <strong>Price:</strong>
+          <%= @product.price %>
+        </div>
+        <div>
+          <strong>Status:</strong>
+          <%= @product.status %>
+        </div>
+      </div>
+    <%if !current_user.nil? %>
+      <div><<%= button_to 'Kosárba', add_to_cart_path(product.id) ,method: :post %>/div>
+    <%end %>
+  </div>
+  <div>
+
+</div>
+
+<%if current_user&.admin %>
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
+<%end %>
